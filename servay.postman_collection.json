@@ -1,0 +1,332 @@
+{
+	"info": {
+		"name": "servay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// If the status code is 200, extract the token and set it as a collection variable",
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    var token = jsonData.token;",
+									"    pm.collectionVariables.set(\"TOKEN\", token);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Test User",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "testuser@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1pa$$worD",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "1pa$$worD",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ORIGIN}}/api/signup",
+							"host": [
+								"{{ORIGIN}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// If the status code is 200, extract the token and set it as a collection variable",
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    var token = jsonData.token;",
+									"    pm.collectionVariables.set(\"TOKEN\", token);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "testuser@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1pa$$worD",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ORIGIN}}/api/login",
+							"host": [
+								"{{ORIGIN}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ORIGIN}}/api/my-details",
+							"host": [
+								"{{ORIGIN}}"
+							],
+							"path": [
+								"api",
+								"my-details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Survey",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ORIGIN}}/api/survey",
+							"host": [
+								"{{ORIGIN}}"
+							],
+							"path": [
+								"api",
+								"survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Financial Survey\",\n  \"description\": \"sdfsf\",\n  \"expire_date\": \"2025-05-01 12:03\",\n  \"questions\": [\n    {\n      \"id\": 1,\n      \"type\": \"text\",\n      \"question\": \"Monthly Income\",\n      \"description\": \"Your regular monthly income\",\n      \"data\": null\n    },\n    {\n      \"id\": 2,\n      \"type\": \"radio\",\n      \"question\": \"What is your primary source of income?\",\n      \"description\": \"Choose one option\",\n      \"data\": {\n        \"options\": [\"Salary\", \"Business\", \"Investments\", \"Other\"]\n      }\n    },\n    {\n      \"id\": 3,\n      \"type\": \"checkbox\",\n      \"question\": \"Which of the following expenses do you have monthly?\",\n      \"description\": \"Select all that apply\",\n      \"data\": {\n        \"options\": [\"Rent\", \"Utilities\", \"Groceries\", \"Loans\", \"Subscriptions\"]\n      }\n    },\n    {\n      \"id\": 4,\n      \"type\": \"text\",\n      \"question\": \"How much do you save each month?\",\n      \"description\": \"Enter the amount in INR\",\n      \"data\": null\n    }\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ORIGIN}}/api/survey",
+							"host": [
+								"{{ORIGIN}}"
+							],
+							"path": [
+								"api",
+								"survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Financial Survey\",\n  \"description\": \"sdfsf\",\n  \"expire_date\": \"2025-05-01 12:03\",\n  \"questions\": [\n    {\n      \"id\": 1,\n      \"type\": \"text\",\n      \"question\": \"Monthly Income\",\n      \"description\": \"Your regular monthly income\",\n      \"data\": null\n    },\n    {\n      \"id\": 2,\n      \"type\": \"radio\",\n      \"question\": \"What is your primary source of income?\",\n      \"description\": \"Choose one option\",\n      \"data\": {\n        \"options\": [\"Salary\", \"Business\", \"Investments\", \"Other\"]\n      }\n    },\n    {\n      \"id\": 3,\n      \"type\": \"checkbox\",\n      \"question\": \"Which of the following expenses do you have monthly?\",\n      \"description\": \"Select all that apply\",\n      \"data\": {\n        \"options\": [\"Rent\", \"Utilities\", \"Groceries\", \"Loans\", \"Subscriptions\"]\n      }\n    },\n    {\n      \"id\": 4,\n      \"type\": \"text\",\n      \"question\": \"How much do you save each month?\",\n      \"description\": \"Enter the amount in INR\",\n      \"data\": null\n    }\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ORIGIN}}/api/survey/financial-survey",
+							"host": [
+								"{{ORIGIN}}"
+							],
+							"path": [
+								"api",
+								"survey",
+								"financial-survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ORIGIN}}/api/survey/financial-survey",
+							"host": [
+								"{{ORIGIN}}"
+							],
+							"path": [
+								"api",
+								"survey",
+								"financial-survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ORIGIN}}/api/survey/financial-survey",
+							"host": [
+								"{{ORIGIN}}"
+							],
+							"path": [
+								"api",
+								"survey",
+								"financial-survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Answer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ORIGIN}}/api/survey/financial-survey/answer",
+							"host": [
+								"{{ORIGIN}}"
+							],
+							"path": [
+								"api",
+								"survey",
+								"financial-survey",
+								"answer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.request.headers.add({",
+					"    key: 'Accept',",
+					"    value: 'application/json'",
+					"});",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ORIGIN",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
